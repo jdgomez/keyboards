@@ -5,16 +5,25 @@
 
 extern keymap_config_t keymap_config;
 
+enum {
+    TD_S,
+    TD_Q,
+    TD_M,
+    TD_A,
+    TD_J
+};
+
+
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       [0] = LAYOUT_split_3x6_3(
       //,-----------------------------------------------------.                    ,-----------------------------------------------------.
-     LT(4,KC_TAB), KC_SCLN, KC_COMM,  KC_DOT,    KC_P,    KC_Y,                         KC_F,    KC_G,    KC_C,    KC_R,   KC_L,  KC_BSPC,
+     LT(4,KC_TAB),TD(TD_S), KC_COMM,  KC_DOT,    KC_P,    KC_Y,                         KC_F,    KC_G,    KC_C,    KC_R,   KC_L,  KC_BSPC,
       //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-   LCTL_T(KC_ESC),    KC_A,    KC_O,    KC_E,    KC_U,    KC_I,                         KC_D,    KC_H,    KC_T,    KC_N,    KC_S, KC_MINS,
+   LCTL_T(KC_ESC),    KC_A,    KC_O,    KC_E,    KC_U,    KC_I,                         KC_D,    KC_H,    KC_T,    KC_N,    KC_S,TD(TD_M),
       //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-          KC_LSFT, KC_QUOT,    KC_Q,    KC_J,    KC_K,    KC_X,                         KC_B,    KC_M,    KC_W,    KC_V,    KC_Z, RSFT_T(KC_SLSH),
+          KC_LSFT,TD(TD_Q),    KC_Q,    KC_J,    KC_K,    KC_X,                         KC_B,    KC_M,    KC_W,    KC_V,    KC_Z, RSFT_T(KC_SLSH),
       //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                              KC_LGUI,   MO(1),  KC_SPC,     KC_ENT,   MO(2), KC_RALT
+                                              KC_LGUI,   MO(1),  KC_SPC,   TD(TD_J),   MO(2), KC_RALT
                                           //`--------------------------'  `--------------------------'
 
       ),
@@ -27,19 +36,19 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
           KC_BRMD, KC_BRMU, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                         KC_Z, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
       //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                              KC_LGUI, _______,  KC_SPC,     KC_ENT,  MO(3), KC_RALT
+                                              KC_LGUI, _______,  KC_SPC,   TD(TD_J),   MO(3), KC_RALT
                                           //`--------------------------'  `--------------------------'
       ),
 
       [2] = LAYOUT_split_3x6_3(
       //,-----------------------------------------------------.                    ,-----------------------------------------------------.
-           KC_TAB, KC_EXLM,   KC_AT, KC_LPRN, KC_RPRN, XXXXXXX,                      KC_LABK, KC_RABK, KC_ASTR, KC_HASH, KC_PEQL, KC_BSPC,
+           KC_TAB, KC_EXLM,TD(TD_A), KC_LPRN, KC_RPRN, XXXXXXX,                      KC_LABK, KC_RABK, KC_ASTR, KC_HASH,  KC_EQL, KC_BSPC,
       //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-          KC_LCTL, XXXXXXX, XXXXXXX, KC_LCBR, KC_RCBR, XXXXXXX,                      KC_DLR,  KC_AMPR, KC_PIPE, KC_SLSH, KC_BSLS,  KC_GRV,
+          KC_LCTL, XXXXXXX, KC_QUES, KC_LCBR, KC_RCBR, XXXXXXX,                      KC_DLR,  KC_AMPR, KC_PIPE, KC_SLSH, KC_BSLS,  KC_GRV,
       //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
           KC_LSFT, XXXXXXX, XXXXXXX, KC_LBRC, KC_RBRC, XXXXXXX,                      KC_CIRC, KC_PLUS, KC_PMNS, XXXXXXX, XXXXXXX, KC_TILD,
       //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                              KC_LGUI,  MO(3),  KC_SPC,     KC_ENT, _______, KC_RALT
+                                              KC_LGUI,  MO(3),  KC_SPC,    TD(TD_J), _______, KC_RALT
                                           //`--------------------------'  `--------------------------'
       ),
 
@@ -51,7 +60,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
           XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
       //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                              KC_LGUI, _______,  KC_SPC,     KC_ENT, _______, KC_RALT
+                                              KC_LGUI, _______,  KC_SPC,   TD(TD_J), _______, KC_RALT
                                           //`--------------------------'  `--------------------------'
       ),
 
@@ -63,10 +72,22 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
             XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                         KC_0,    KC_1,    KC_2,    KC_3, KC_COMM, XXXXXXX,
         //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                                KC_LGUI, XXXXXXX,  KC_SPC,     KC_ENT, XXXXXXX, KC_RALT
+                                                KC_LGUI, XXXXXXX,  KC_SPC,   TD(TD_J), XXXXXXX, KC_RALT
                                             //`--------------------------'  `--------------------------'
         )
 };
+
+// Tap Dance definitions
+qk_tap_dance_action_t tap_dance_actions[] = {
+    // Tap once for ;, twice for :
+    [TD_S] = ACTION_TAP_DANCE_DOUBLE(KC_SCLN, LSFT(KC_SCLN)),
+    [TD_Q] = ACTION_TAP_DANCE_DOUBLE(KC_QUOT, LSFT(KC_QUOT)),
+    [TD_M] = ACTION_TAP_DANCE_DOUBLE(KC_MINUS, LSFT(KC_MINUS)),
+    [TD_A] = ACTION_TAP_DANCE_DOUBLE(KC_AT, KC_HASH),
+    [TD_J] = ACTION_TAP_DANCE_DOUBLE(KC_SPC, KC_ENT),
+};
+
+
 
 #ifdef OLED_DRIVER_ENABLE
 oled_rotation_t oled_init_user(oled_rotation_t rotation) {
