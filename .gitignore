@@ -1,4 +1,6 @@
 .\idea\
 .\teclado\
 ./idea/
+.idea/
 ./teclado/
+./zmk-config/
