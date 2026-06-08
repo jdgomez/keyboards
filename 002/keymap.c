@@ -31,24 +31,24 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [_NAV] = LAYOUT_split_3x6_3(
     //,-----------------------------------------------------.                    ,-----------------------------------------------------.
-       XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      KC_C,    KC_V,    KC_UP,   XXXXXXX, XXXXXXX, KC_DEL,
+       KC_TAB,  XXXXXXX, KC_P7,   KC_P8,   KC_P9,   XXXXXXX,                    XXXXXXX, XXXXXXX, KC_UP,   XXXXXXX, XXXXXXX, KC_BSPC,
     //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-       KC_ESC,  KC_LCTL, KC_LSFT, KC_LALT, KC_ALGR, XXXXXXX,                      KC_X,  KC_LEFT, KC_DOWN,  KC_RGHT, XXXXXXX, XXXXXXX,
+       KC_LCTL, XXXXXXX, KC_P4,   KC_P5,   KC_P6,   KC_PDOT,                    XXXXXXX, KC_LEFT, KC_DOWN, KC_RGHT, XXXXXXX, KC_DEL,
     //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-       KC_BRMD, KC_BRMU, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      KC_Z,  XXXXXXX, XXXXXXX,  XXXXXXX, XXXXXXX, XXXXXXX,
+       KC_LSFT, KC_P0,   KC_P1,   KC_P2,   KC_P3,   KC_PCMM,                    XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_ESC,
     //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                            KC_LGUI, _______, KC_SPC,   TD(TD_J), MO(_MEDIA), KC_RALT
+                                            KC_LGUI, _______, KC_SPC,   KC_ENT,  MO(_MEDIA), KC_RALT
     ),
 
     [_SYM] = LAYOUT_split_3x6_3(
     //,-----------------------------------------------------.                    ,-----------------------------------------------------.
-       KC_TAB,  KC_EXLM, TD(TD_A), KC_LPRN, KC_RPRN, XXXXXXX,                    KC_LABK, KC_RABK, KC_ASTR, KC_HASH, KC_EQL,  KC_BSPC,
+       KC_TAB,  S(KC_1), S(KC_2), S(KC_3), S(KC_4), S(KC_5),                    S(KC_6), S(KC_7), S(KC_8), S(KC_9), S(KC_0), KC_BSPC,
     //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-       KC_LCTL, XXXXXXX, KC_QUES,  KC_LCBR, KC_RCBR, XXXXXXX,                    KC_DLR,  KC_AMPR, KC_PIPE, KC_SLSH, KC_BSLS, KC_GRV,
+       KC_LCTL, XXXXXXX, S(KC_SLSH), S(KC_9), S(KC_0), XXXXXXX,                KC_MINS, KC_EQL,  KC_LBRC, KC_RBRC, KC_BSLS, KC_GRV,
     //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-       KC_LSFT, XXXXXXX, XXXXXXX,  KC_LBRC, KC_RBRC, XXXXXXX,                    KC_CIRC, KC_PLUS, KC_PMNS, XXXXXXX, XXXXXXX, KC_TILD,
+       KC_LSFT, XXXXXXX, XXXXXXX, KC_LBRC, KC_RBRC, XXXXXXX,                   S(KC_MINS), S(KC_EQL), S(KC_LBRC), S(KC_RBRC), S(KC_BSLS), S(KC_GRV),
     //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                            KC_LGUI, MO(_MEDIA), KC_SPC, TD(TD_J), _______, KC_RALT
+                                            KC_LGUI, MO(_MEDIA), KC_SPC, KC_ENT, _______, KC_RALT
     ),
 
     [_MEDIA] = LAYOUT_split_3x6_3(
