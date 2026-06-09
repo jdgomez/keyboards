@@ -12,8 +12,6 @@ enum {
     TD_S,   // ;  / :
     TD_Q,   // '  / "
     TD_M,   // -  / _
-    TD_A,   // @  / #
-    TD_J,   // SPC / ENT
 };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -26,7 +24,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
        KC_LSFT,        TD(TD_Q),   KC_Q,    KC_J,    KC_K,    KC_X,                KC_B,    KC_M,    KC_W,    KC_V,    KC_Z,  RSFT_T(KC_SLSH),
     //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                            KC_LGUI, MO(_NAV), KC_SPC,  TD(TD_J), MO(_SYM), KC_RALT
+                                            KC_LGUI, MO(_NAV), KC_SPC,  KC_ENT,   MO(_SYM), KC_RALT
     ),
 
     [_NAV] = LAYOUT_split_3x6_3(
@@ -55,11 +53,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     //,-----------------------------------------------------.                    ,-----------------------------------------------------.
        XXXXXXX, XXXXXXX, KC_MPRV, KC_MPLY, KC_MNXT, KC_VOLU,                     KC_PPLS, KC_7,    KC_8,    KC_9,    KC_PMNS, KC_BSPC,
     //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-       XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_VOLD,                     KC_PAST, KC_4,    KC_5,    KC_6,    KC_PSLS, XXXXXXX,
+       XXXXXXX, XXXXXXX, XXXXXXX, LCTL(LSFT(LGUI(KC_4))), LSFT(LGUI(KC_4)), KC_VOLD, KC_PAST, KC_4,    KC_5,    KC_6,    KC_PSLS, XXXXXXX,
     //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
        XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                     KC_0,    KC_1,    KC_2,    KC_3,    KC_COMM, XXXXXXX,
     //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                            KC_LGUI, _______, KC_SPC,   TD(TD_J), _______, KC_RALT
+                                            KC_LGUI, _______, KC_SPC,   KC_ENT,   _______, KC_RALT
     ),
 };
 
@@ -67,6 +65,5 @@ tap_dance_action_t tap_dance_actions[] = {
     [TD_S] = ACTION_TAP_DANCE_DOUBLE(KC_SCLN, LSFT(KC_SCLN)),  // ; / :
     [TD_Q] = ACTION_TAP_DANCE_DOUBLE(KC_QUOT, LSFT(KC_QUOT)),  // ' / "
     [TD_M] = ACTION_TAP_DANCE_DOUBLE(KC_MINS, LSFT(KC_MINS)),  // - / _
-    [TD_A] = ACTION_TAP_DANCE_DOUBLE(KC_AT,   KC_HASH),         // @ / #
-    [TD_J] = ACTION_TAP_DANCE_DOUBLE(KC_SPC,  KC_ENT),          // SPC / ENT
+
 };
