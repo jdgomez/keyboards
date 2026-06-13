@@ -4,12 +4,12 @@ Keymaps personales para teclados split Corne (crkbd). Todos usan layout Dvorak.
 
 ## Configuraciones
 
-| Directorio | Descripción |
-|-----------|-------------|
-| `001` | Config principal — Corne crkbd, mano izquierda como master |
-| `001-reverse` | Igual que 001 pero con manos invertidas (fix de hardware) |
-| `002` | Corne RP2040 — basada en 001, adaptada para crkbd/rev1 + RP2040 |
-| `casum` | Config de un amigo — más tap dance, RGB por capa, tri-layer |
+| Directorio    | Descripción                                                                                      |
+|---------------|--------------------------------------------------------------------------------------------------|
+| `001`         | Config principal — Corne crkbd, mano izquierda como master                                       |
+| `001-reverse` | Igual que 001 pero con manos invertidas (fix de hardware)                                        |
+| `002`         | Corne RP2040 — basada en 001, adaptada para crkbd/rev1 + RP2040                                  |
+| `003`         | Igual que 002 pero con funciones experimentales sacadas de recomendaciones encontradas en la red |
 
 ## Requisitos
 
