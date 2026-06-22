@@ -4,8 +4,7 @@
 
 // Tap dance / Home Row Mods
 #define TAPPING_FORCE_HOLD
-#define TAPPING_TERM 200
-#define PERMISSIVE_HOLD          // activa el mod si se pulsa otra tecla antes de soltar
+#define TAPPING_TERM 220
 
 // Combos: ventana de tiempo para detectar dos teclas simultáneas
 #define COMBO_TERM 50
