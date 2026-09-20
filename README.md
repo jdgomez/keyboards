@@ -4,12 +4,12 @@ Keymaps personales para teclados split Corne (crkbd). Todos usan layout Dvorak.
 
 ## Configuraciones
 
-| Directorio    | Descripción                                                                                      |
-|---------------|--------------------------------------------------------------------------------------------------|
-| `001`         | Config principal — Corne crkbd, mano izquierda como master                                       |
-| `001-reverse` | Igual que 001 pero con manos invertidas (fix de hardware)                                        |
-| `002`         | Corne RP2040 — basada en 001, adaptada para crkbd/rev1 + RP2040                                  |
-| `003`         | Igual que 002 pero con funciones experimentales sacadas de recomendaciones encontradas en la red |
+| Directorio | Descripción                                                                                                    |
+|------------|-----------------------------------------------------------------------------------------------------------------|
+| `current`  | Configuración estable en uso (antes `003`) — Corne RP2040, home row mods GACS, combos, auto shift, atajos de captura de pantalla de macOS |
+| `legacy`   | Versiones antiguas conservadas por referencia, ya no se usan: `001` (config principal original, mano izquierda master), `001-reverse` (igual pero manos invertidas), `002` (adaptación intermedia a crkbd/rev1 + RP2040) |
+
+Próxima versión prevista: `experimental` (aún no creada).
 
 ## Requisitos
 
@@ -27,12 +27,12 @@ sudo apt-get install -y git avr-libc gcc-avr binutils-avr dfu-programmer \
   avrdude dos2unix
 ```
 
-## Compilar (002 — Corne RP2040)
+## Compilar (current — Corne RP2040)
 
 Copia el directorio del keymap a QMK:
 
 ```bash
-cp -r 002 ~/qmk_firmware/keyboards/crkbd/keymaps/v001
+cp -r current/* ~/qmk_firmware/keyboards/crkbd/keymaps/v001
 ```
 
 Compila:
@@ -43,7 +43,7 @@ Compila:
 
 El `.uf2` se genera en `~/qmk_firmware/crkbd_rev1_v001_promicro_rp2040.uf2`.
 
-## Flashear (002 — Corne RP2040)
+## Flashear (current — Corne RP2040)
 
 El teclado se flashea en modo bootloader mediante UF2 — aparece como una unidad USB llamada `RPI-RP2`.
 
@@ -70,7 +70,7 @@ Todos los sistemas configurados con **English (US International)**. Con RALT en 
 | RALT + u | ú |
 | RALT + n | ñ |
 
-## Tap dance (002)
+## Tap dance (current)
 
 | Tecla | 1 tap | 2 taps |
 |-------|-------|--------|

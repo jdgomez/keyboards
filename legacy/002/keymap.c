@@ -67,3 +67,12 @@ tap_dance_action_t tap_dance_actions[] = {
     [TD_M] = ACTION_TAP_DANCE_DOUBLE(KC_MINS, LSFT(KC_MINS)),  // - / _
 
 };
+
+// ── RGB ──────────────────────────────────────────────────────────────────────
+// Fuerza color fijo en cada arranque, sin tocar EEPROM: evita que las dos
+// mitades diverjan si la sincronización RGBLIGHT_SPLIT falla o si alguna
+// mitad tiene guardado un estado distinto (bug de LED izquierdo en blanco,
+// 2026-09-20).
+void keyboard_post_init_user(void) {
+    rgblight_sethsv_noeeprom(HSV_RED);
+}
