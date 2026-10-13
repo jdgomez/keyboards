@@ -6,7 +6,7 @@ Keymaps personales para teclados split Corne (crkbd). Todos usan layout Dvorak.
 
 | Directorio | Descripción                                                                                                    |
 |------------|-----------------------------------------------------------------------------------------------------------------|
-| `current`  | Configuración estable en uso (antes `003`) — Corne RP2040, home row mods GACS, combos, auto shift, atajos de captura de pantalla de macOS |
+| `current`  | Configuración estable en uso (antes `003`). `current/qmk`: Corne RP2040 cableado. `current/zmk`: Corne nice!nano Bluetooth (FunkeeB). Dvorak, home row mods GACS, combos, auto shift, atajos de captura de pantalla de macOS |
 | `legacy`   | Versiones antiguas conservadas por referencia, ya no se usan: `001` (config principal original, mano izquierda master), `001-reverse` (igual pero manos invertidas), `002` (adaptación intermedia a crkbd/rev1 + RP2040) |
 
 Próxima versión prevista: `experimental` (aún no creada).
@@ -27,12 +27,12 @@ sudo apt-get install -y git avr-libc gcc-avr binutils-avr dfu-programmer \
   avrdude dos2unix
 ```
 
-## Compilar (current — Corne RP2040)
+## Compilar (current/qmk - Corne RP2040)
 
 Copia el directorio del keymap a QMK:
 
 ```bash
-cp -r current/* ~/qmk_firmware/keyboards/crkbd/keymaps/v001
+cp -r current/qmk/* ~/qmk_firmware/keyboards/crkbd/keymaps/v001
 ```
 
 Compila:
@@ -43,7 +43,7 @@ Compila:
 
 El `.uf2` se genera en `~/qmk_firmware/crkbd_rev1_v001_promicro_rp2040.uf2`.
 
-## Flashear (current — Corne RP2040)
+## Flashear (current/qmk - Corne RP2040)
 
 El teclado se flashea en modo bootloader mediante UF2 — aparece como una unidad USB llamada `RPI-RP2`.
 
@@ -56,6 +56,35 @@ Como el doble tap en RESET quita el teclado, usar el script incluido:
 # 2. Haz doble tap rápido en el botón RESET de la mitad izquierda
 #    El teclado se detecta, se copia el firmware y se reinicia solo
 ```
+
+## Compilar (current/zmk - Corne nice!nano Bluetooth)
+
+Config ZMK v0.3.0 en `current/zmk` (nice!nano v2 + pantallas nice!view). El keymap
+`current/zmk/config/corne.keymap` es un port de `current/qmk/keymap.c`: mantener ambos sincronizados.
+
+En GitHub: cada push que toque `current/zmk/` lanza el workflow `ZMK build`.
+Los `.uf2` se descargan desde los artefactos del run.
+
+En local, con Docker (los `.uf2` quedan en `current/zmk/out/`):
+
+```bash
+cd current/zmk
+docker run --rm -u $(id -u):$(id -g) -e HOME=/tmp -v "$PWD":/w -w /w zmkfirmware/zmk-build-arm:3.5 sh -c '
+  west init -l config; west update --fetch-opt=--filter=tree:0 && west zephyr-export &&
+  west build -p -s zmk/app -d build -b nice_nano_v2 -- -DSHIELD="corne_left nice_view_adapter nice_view" -DZMK_CONFIG=/w/config'
+```
+
+Para la mitad derecha, cambiar `corne_left` por `corne_right`. El firmware queda en `build/zephyr/zmk.uf2`.
+
+## Flashear (current/zmk)
+
+1. Conectar por USB la mitad a flashear y hacer doble tap en RESET: aparece la unidad `NICENANO`.
+2. Copiar el `.uf2` de esa mitad (`corne_left-*` o `corne_right-*`) a la unidad. Se reinicia sola.
+3. Repetir con la otra mitad.
+
+Si las mitades dejan de verse entre ellas: flashear `settings_reset-*.uf2` en ambas, después el firmware normal en ambas, y pulsar RESET en las dos a la vez.
+
+Bluetooth: en la capa Media, fila inferior izquierda. `BT_SEL 0-2` elige equipo, `BT_CLR` olvida el emparejamiento activo, `OUT_USB` / `OUT_BLE` elige cable o Bluetooth.
 
 ## Tildes y eñe
 
@@ -77,5 +106,3 @@ Todos los sistemas configurados con **English (US International)**. Con RALT en 
 | TD_S | `;` | `:` |
 | TD_Q | `'` | `"` |
 | TD_M | `-` | `_` |
-| TD_A | `@` | `#` |
-| TD_J | `Space` | `Enter` |

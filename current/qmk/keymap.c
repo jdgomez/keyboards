@@ -118,7 +118,8 @@ tap_dance_action_t tap_dance_actions[] = {
 // Fuerza color fijo en cada arranque, sin tocar EEPROM: evita que las dos
 // mitades diverjan si la sincronización RGBLIGHT_SPLIT falla o si alguna
 // mitad tiene guardado un estado distinto (bug de LED izquierdo en blanco,
-// 2026-09-20). RGBLIGHT_LIMIT_VAL (config.h) limita el valor al margen seguro.
+// 2026-09-20). El brillo máximo (RGBLIGHT_LIMIT_VAL 120) ya lo fija
+// keyboards/crkbd/rev1/keyboard.json en QMK.
 void keyboard_post_init_user(void) {
     rgblight_sethsv_noeeprom(HSV_RED);
 }

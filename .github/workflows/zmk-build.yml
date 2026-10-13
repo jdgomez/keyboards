@@ -1,0 +1,63 @@
+# Compila current/zmk y publica los .uf2 como artefacto "firmware".
+# Mismos comandos que la compilación local descrita en el README.
+name: ZMK build
+
+on:
+  push:
+    paths:
+      - "current/zmk/**"
+      - ".github/workflows/zmk-build.yml"
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    container:
+      image: zmkfirmware/zmk-build-arm:3.5
+    defaults:
+      run:
+        working-directory: current/zmk
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - name: corne_left
+            shield: corne_left nice_view_adapter nice_view
+          - name: corne_right
+            shield: corne_right nice_view_adapter nice_view
+          - name: settings_reset
+            shield: settings_reset
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Cache west modules
+        uses: actions/cache@v4
+        with:
+          path: |
+            current/zmk/zmk
+            current/zmk/zephyr
+            current/zmk/modules
+            current/zmk/bootloader
+            current/zmk/tools
+          key: west-${{ hashFiles('current/zmk/config/west.yml') }}
+
+      - name: West init and update
+        run: |
+          west init -l config
+          west update --fetch-opt=--filter=tree:0
+          west zephyr-export
+
+      - name: Build
+        run: >
+          west build -p -s zmk/app -d build -b nice_nano_v2 --
+          -DSHIELD="${{ matrix.shield }}" -DZMK_CONFIG="$PWD/config"
+
+      - name: Rename artifact
+        run: |
+          mkdir -p out
+          cp build/zephyr/zmk.uf2 "out/${{ matrix.name }}-nice_nano_v2.uf2"
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: firmware-${{ matrix.name }}
+          path: current/zmk/out/*.uf2

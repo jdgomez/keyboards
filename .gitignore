@@ -1,6 +1,14 @@
-.\idea\
-.\teclado\
-./idea/
 .idea/
-./teclado/
-./zmk-config/
+idea/
+teclado/
+zmk-config/
+
+# Workspace west de ZMK (generado por west init/update/build)
+current/zmk/.west/
+current/zmk/zmk/
+current/zmk/zephyr/
+current/zmk/modules/
+current/zmk/bootloader/
+current/zmk/tools/
+current/zmk/build/
+current/zmk/out/
