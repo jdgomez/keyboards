@@ -1,0 +1,4 @@
+name: keyboards-jdgomez
+build:
+  settings:
+    board_root: .

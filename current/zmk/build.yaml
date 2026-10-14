@@ -1,9 +1,9 @@
 # Combinaciones placa/shield que se compilan. Cada entrada genera un .uf2.
 include:
   - board: nice_nano_v2
-    shield: corne_left nice_view_adapter nice_view
+    shield: corne_left nice_view_adapter nice_view_bongo
   - board: nice_nano_v2
-    shield: corne_right nice_view_adapter nice_view
+    shield: corne_right nice_view_adapter nice_view_magikarp
   # Borra los emparejamientos BLE guardados. Flashear en ambas mitades si
   # dejan de verse entre ellas, luego volver a flashear el firmware normal.
   - board: nice_nano_v2

@@ -62,6 +62,15 @@ Como el doble tap en RESET quita el teclado, usar el script incluido:
 Config ZMK v0.3.0 en `current/zmk` (nice!nano v2 + pantallas nice!view). El keymap
 `current/zmk/config/corne.keymap` es un port de `current/qmk/keymap.c`: mantener ambos sincronizados.
 
+Pantallas (shields propios en `current/zmk/module`):
+- Izquierda, `nice_view_bongo`: el Bongo Cat del firmware de fábrica de FunkeeB
+  ([finestedm/temper-zmkstudio](https://github.com/finestedm/temper-zmkstudio/tree/niceview-bongo),
+  portado de LVGL 9 a LVGL 8 para ZMK v0.3.0). Batería, capa, WPM con gráfica y conexión; el gato
+  toca con las pulsaciones de ambas mitades y se duerme tras 1 min sin uso.
+- Derecha, `nice_view_magikarp`: batería y conexión como el de serie, y Magikarp chapoteando que
+  evoluciona a Gyarados tras 1000 pulsaciones en esa mitad (se reinicia al dormir). Los sprites se
+  generan con `sprites.py` en la carpeta del shield.
+
 En GitHub: cada push que toque `current/zmk/` lanza el workflow `ZMK build`.
 Los `.uf2` se descargan desde los artefactos del run.
 
@@ -71,10 +80,10 @@ En local, con Docker (los `.uf2` quedan en `current/zmk/out/`):
 cd current/zmk
 docker run --rm -u $(id -u):$(id -g) -e HOME=/tmp -v "$PWD":/w -w /w zmkfirmware/zmk-build-arm:3.5 sh -c '
   west init -l config; west update --fetch-opt=--filter=tree:0 && west zephyr-export &&
-  west build -p -s zmk/app -d build -b nice_nano_v2 -- -DSHIELD="corne_left nice_view_adapter nice_view" -DZMK_CONFIG=/w/config'
+  west build -p -s zmk/app -d build -b nice_nano_v2 -- -DSHIELD="corne_left nice_view_adapter nice_view_bongo" -DZMK_CONFIG=/w/config -DZMK_EXTRA_MODULES=/w/module'
 ```
 
-Para la mitad derecha, cambiar `corne_left` por `corne_right`. El firmware queda en `build/zephyr/zmk.uf2`.
+Para la mitad derecha: `-DSHIELD="corne_right nice_view_adapter nice_view_magikarp"`. El firmware queda en `build/zephyr/zmk.uf2`.
 
 ## Flashear (current/zmk)
 

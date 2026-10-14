@@ -5,7 +5,9 @@ name: ZMK build
 on:
   push:
     paths:
-      - "current/zmk/**"
+      - "current/zmk/config/**"
+      - "current/zmk/module/**"
+      - "current/zmk/build.yaml"
       - ".github/workflows/zmk-build.yml"
   workflow_dispatch:
 
@@ -22,9 +24,9 @@ jobs:
       matrix:
         include:
           - name: corne_left
-            shield: corne_left nice_view_adapter nice_view
+            shield: corne_left nice_view_adapter nice_view_bongo
           - name: corne_right
-            shield: corne_right nice_view_adapter nice_view
+            shield: corne_right nice_view_adapter nice_view_magikarp
           - name: settings_reset
             shield: settings_reset
     steps:
@@ -51,6 +53,7 @@ jobs:
         run: >
           west build -p -s zmk/app -d build -b nice_nano_v2 --
           -DSHIELD="${{ matrix.shield }}" -DZMK_CONFIG="$PWD/config"
+          -DZMK_EXTRA_MODULES="$PWD/module"
 
       - name: Rename artifact
         run: |
