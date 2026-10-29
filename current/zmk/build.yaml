@@ -4,6 +4,11 @@ include:
     shield: corne_left nice_view_adapter nice_view_bongo
   - board: nice_nano_v2
     shield: corne_right nice_view_adapter nice_view_magikarp
+  # Variante solo para este teclado: el pin D21 de su controlador derecho está en
+  # corto a masa y la columna exterior va cableada a D8 (ver corne_right_d8).
+  - board: nice_nano_v2
+    shield: corne_right corne_right_d8 nice_view_adapter nice_view_magikarp
+    artifact-name: corne_right_d8-nice_nano_v2
   # Borra los emparejamientos BLE guardados. Flashear en ambas mitades si
   # dejan de verse entre ellas, luego volver a flashear el firmware normal.
   - board: nice_nano_v2

@@ -85,10 +85,17 @@ docker run --rm -u $(id -u):$(id -g) -e HOME=/tmp -v "$PWD":/w -w /w zmkfirmware
 
 Para la mitad derecha: `-DSHIELD="corne_right nice_view_adapter nice_view_magikarp"`. El firmware queda en `build/zephyr/zmk.uf2`.
 
+La mitad derecha del Corne Bluetooth actual lleva la variante `corne_right_d8`
+(`-DSHIELD="corne_right corne_right_d8 nice_view_adapter nice_view_magikarp"`): el pin D21 (P0.31)
+de su controlador está en corto a masa, así que se cortó ese pin y la columna exterior (borrar,
+guion, slash) va con un cable en la PCB hasta D8 (P1.04). El shield `corne_right_d8` solo cambia
+ese pin; el firmware `corne_right` estándar sigue valiendo para cualquier otro Corne o si se
+cambia el controlador (quitando el cable).
+
 ## Flashear (current/zmk)
 
 1. Conectar por USB la mitad a flashear y hacer doble tap en RESET: aparece la unidad `NICENANO`.
-2. Copiar el `.uf2` de esa mitad (`corne_left-*` o `corne_right-*`) a la unidad. Se reinicia sola.
+2. Copiar el `.uf2` de esa mitad (`corne_left-*` o `corne_right_d8-*` en este teclado; `corne_right-*` en un Corne sin el arreglo) a la unidad. Se reinicia sola.
 3. Repetir con la otra mitad.
 
 Si las mitades dejan de verse entre ellas: flashear `settings_reset-*.uf2` en ambas, después el firmware normal en ambas, y pulsar RESET en las dos a la vez.
