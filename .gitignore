@@ -12,3 +12,10 @@ current/zmk/bootloader/
 current/zmk/tools/
 current/zmk/build/
 current/zmk/out/
+
+# Firmware de fábrica de FunkeeB: copia local, no publicar (repo público)
+current/zmk/factory-firmware/
+
+# Informes de investigación locales
+reports/
+research_notes/
